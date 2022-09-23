@@ -14,11 +14,14 @@
         "type": "origins:on_block"
       },
       {
-        "type":"origins:resource",
-        "compare_to": 0,
-        "comparison": "==",
-        "resource": "vampiricorigin:bloodsource"
+        "type": "apoli:sneaking"
       }
     ]
+  },
+  "condition": {
+    "type": "origins:resource",
+    "compare_to": 0,
+    "comparison": "==",
+    "resource": "vampiricorigin:bloodsource"
   }
 }
