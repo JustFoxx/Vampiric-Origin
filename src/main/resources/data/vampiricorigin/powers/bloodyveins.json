@@ -1,0 +1,37 @@
+{
+  "type": "origins:active_self",
+  "entity_action": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:execute_command",
+        "command": "spreadplayers ~ ~ 4 12 false @s",
+        "permission_level": 4
+      },
+      {
+        "type": "origins:change_resource",
+        "resource": "vampiricorigin:bloodsource",
+        "change": -15
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "execute at @p run particle item minecraft:redstone_block ~ ~1.75 ~ 0 0 0 0.04 40 ",
+        "permission_level": 4
+      }
+    ]
+  },
+  "cooldown": 600,
+  "key": {
+    "key": "key.origins.secondary_active"
+  },
+  "condition": {
+    "type": "origins:resource",
+    "compare_to": 15,
+    "comparison": ">=",
+    "resource": "vampiricorigin:bloodsource"
+  },
+  "hud_render": {
+    "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
+    "bar_index": 14
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "type":"origins:resource",
+    "start_value": 20,
+    "max": 30,
+    "min": 0,
+    "description": "Blood is stored here, you get it from mobs/players",
+    "name": "Blood Source",
+    "hud_render": {
+        "should_render": true,
+        "sprite_location":"origins:textures/gui/community/spiderkolo/resource_bar_01.png",
+        "bar_index": 5
+    }
+}

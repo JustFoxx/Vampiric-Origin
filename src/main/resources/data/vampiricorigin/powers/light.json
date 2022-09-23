@@ -1,0 +1,15 @@
+{
+  "type": "origins:multiple",
+  "jumphigher": {
+    "type": "origins:modify_jump",
+    "modifier": {
+      "operation": "addition",
+      "value": 0.3
+    }
+  },
+  "slowfalling": {
+    "type": "origins:modify_falling",
+    "velocity": 0.01,
+    "take_fall_damage": false
+  }
+}

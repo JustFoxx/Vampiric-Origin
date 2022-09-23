@@ -1,0 +1,41 @@
+{
+  "type": "origins:multiple",
+  "fire": {
+    "type": "origins:fire_projectile",
+    "entity_type": "minecraft:llama_spit",
+    "sound": "entity.llama.spit",
+    "count": 1,
+    "cooldown": 200,
+    "hud_render": {
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 22
+    },
+    "key": {
+      "key": "key.origins.primary_active",
+      "continuous": false
+    },
+    "condition": {
+      "type": "origins:resource",
+      "compare_to": 10,
+      "comparison": ">=",
+      "resource": "vampiricorigin:bloodsource"
+    }
+  },
+  "modify":{
+    "type":"origins:modify_projectile_damage",
+    "damage_condition": {
+        "type": "origins:projectile",
+        "projectile": "minecraft:llama_spit"
+    },
+    "modifier": {
+        "operation": "addition",
+        "value": 5.0
+    },
+    "self_action": {
+        "type":"origins:change_resource",
+        "change": -10,
+        "operation": "add",
+        "resource": "vampiricorigin:bloodsource"
+    }
+  }
+}

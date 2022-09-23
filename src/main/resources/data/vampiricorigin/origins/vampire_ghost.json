@@ -1,0 +1,20 @@
+{
+    "powers": [
+        "vampiricorigin:bloodsource",
+        "vampiricorigin:bloodyspit",
+        "vampiricorigin:bloodyveins",
+        "vampiricorigin:demonic",
+        "vampiricorigin:light",
+        "vampiricorigin:nobody",
+        "vampiricorigin:nohands",
+        "vampiricorigin:sucker",
+        "vampiricorigin:sun",
+        "vampiricorigin:transparent",
+        "vampiricorigin:undead"
+    ],
+    "icon":"minecraft:fermented_spider_eye",
+    "order":100,
+    "impact": 2,
+    "name":"Vampire Ghost",
+    "description": "Demonic creature, created from blood and soul of vampire, seeking for revenge"
+}

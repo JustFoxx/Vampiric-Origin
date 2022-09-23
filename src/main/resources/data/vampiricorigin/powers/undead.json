@@ -1,0 +1,9 @@
+{
+    "type":"origins:multiple",
+    "effects":{
+        "type":"vampiricorigin:undead"
+    },
+    "nomobattack":{
+        "type":"vampiricorigin:no_mob_attack"
+    }
+}

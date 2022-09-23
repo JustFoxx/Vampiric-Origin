@@ -1,0 +1,24 @@
+{
+  "type": "origins:multiple",
+  "meleedamage": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "operation": "multiply_base",
+      "value": -1
+    }
+  },
+  "nouse": {
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": [
+        {
+          "tag": "c:bows"
+        },
+        {
+            "item":"minecraft:shield"
+        }
+      ]
+    }
+  }
+}

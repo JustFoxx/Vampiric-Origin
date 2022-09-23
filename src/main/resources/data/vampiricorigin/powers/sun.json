@@ -1,0 +1,49 @@
+{
+    "type":"origins:multiple",
+    "sun":{
+        "type":"origins:action_over_time",
+        "interval": 1,
+        "condition": {
+            "type":"origins:and",
+            "conditions": [
+                {
+                    "type":"origins:exposed_to_sun"
+                },
+                {
+                    "type":"origins:daytime"
+                }
+            ]
+        },
+        "entity_action": {
+            "type":"origins:change_resource",
+            "change": -1,
+            "operation": "add",
+            "resource": "vampiricorigin:bloodsource"
+        }
+    },
+    "fire":{
+        "type":"origins:action_over_time",
+        "interval": 10,
+        "condition": {
+            "type":"origins:and",
+            "conditions": [
+                {
+                    "type":"origins:exposed_to_sun"
+                },
+                {
+                    "type":"origins:daytime"
+                },
+                {
+                    "type":"origins:resource",
+                    "compare_to": 0,
+                    "comparison": "==",
+                    "resource": "vampiricorigin:bloodsource"
+                }
+            ]
+        },
+        "entity_action": {
+            "type":"apoli:set_on_fire",
+            "duration": 5
+        }
+    }
+}
