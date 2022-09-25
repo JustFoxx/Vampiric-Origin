@@ -3,14 +3,15 @@
         "vampiricorigin:bloodsource",
         "vampiricorigin:bloodyspit",
         "vampiricorigin:bloodyveins",
-        "vampiricorigin:demonic",
+        "vampiricorigin:bloodybomb",
         "vampiricorigin:light",
         "vampiricorigin:nobody",
         "vampiricorigin:nohands",
         "vampiricorigin:sucker",
         "vampiricorigin:sun",
         "vampiricorigin:transparent",
-        "vampiricorigin:undead"
+        "vampiricorigin:undead",
+        "vampiricorigin:vampire"
     ],
     "icon":"minecraft:fermented_spider_eye",
     "order":100,

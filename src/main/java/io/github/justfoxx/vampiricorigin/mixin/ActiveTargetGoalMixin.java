@@ -22,7 +22,6 @@ public abstract class ActiveTargetGoalMixin extends TrackTargetGoal {
 
     @ModifyArg(method = "start", at = @At(value = "INVOKE", target = "net/minecraft/entity/mob/MobEntity.setTarget (Lnet/minecraft/entity/LivingEntity;)V"))
     public LivingEntity canTarget(LivingEntity target) {
-        Main.LOGGER.info("canTarget");
         if(PowerHolderComponent.hasPower(target, NoMobAttack.class)) {
             return null;
         } else {

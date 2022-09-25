@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -35,17 +36,13 @@ public abstract class LivingEntityMixin {
     }
 
 
-//    @ModifyReturnValue(method = "damage", at = @At("RETURN"))
-//    private boolean onDamage(boolean bl) {
-//        if (bl && PowerHolderComponent.hasPower((LivingEntity) (Object) this, Sucker.class)) {
-//            for (Sucker sucker : PowerHolderComponent.getPowers((LivingEntity) (Object) this, Sucker.class)) {
-//                Main.LOGGER.info("Sucker");
-//                sucker.onDamage();
-//                return true;
-//            }
-//            return true;
-//        }
-//        Main.LOGGER.info("Sucker i");
-//        return bl;
-//    }
+    @Inject(method = "damage", at = @At("RETURN"))
+    private void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        boolean bl = cir.getReturnValue();
+        if (bl && PowerHolderComponent.hasPower((LivingEntity) (Object) this, Sucker.class)) {
+            for (Sucker sucker : PowerHolderComponent.getPowers((LivingEntity) (Object) this, Sucker.class)) {
+                sucker.onDamage();
+            }
+        }
+    }
 }

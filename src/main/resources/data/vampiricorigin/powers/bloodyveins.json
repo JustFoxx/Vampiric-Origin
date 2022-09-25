@@ -5,6 +5,11 @@
     "actions": [
       {
         "type": "origins:execute_command",
+        "command": "execute at @p run particle item minecraft:redstone_block ~0 ~0.2 ~0.2 0.2 0.8 0.2 0.04 40 force",
+        "permission_level": 4
+      },
+      {
+        "type": "origins:execute_command",
         "command": "spreadplayers ~ ~ 4 12 false @s",
         "permission_level": 4
       },
@@ -15,7 +20,7 @@
       },
       {
         "type": "origins:execute_command",
-        "command": "execute at @p run particle item minecraft:redstone_block ~ ~1.75 ~ 0 0 0 0.04 40 ",
+        "command": "execute at @p run particle item minecraft:redstone_block ~0 ~0.2 ~0.2 0.2 0.8 0.2 0.04 40 force",
         "permission_level": 4
       }
     ]
