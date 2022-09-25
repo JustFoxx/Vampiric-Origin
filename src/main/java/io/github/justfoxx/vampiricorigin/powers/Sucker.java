@@ -20,6 +20,8 @@ import java.util.Random;
 
 public class Sucker extends BasePower {
     private final SerializableData.Instance data;
+    private final Random generator = new Random();
+    private int tick = 30;
 
     public Sucker(PowerType<?> type, LivingEntity entity, SerializableData.Instance data) {
         super(type, entity);
@@ -27,54 +29,58 @@ public class Sucker extends BasePower {
     }
 
     public void onDamage() {
-        if(entity.getVehicle() instanceof LivingEntity) {
-            entity.dismountVehicle();
-        }
+        if(!(entity.getVehicle() instanceof LivingEntity))return;
+
+        entity.dismountVehicle();
     }
 
-    private int tick = 30;
-
-    private void modifyResource(int add) {
+    private void addToResource(int add) {
         PowerHolderComponent component = PowerHolderComponent.KEY.get(entity);
         Power power = component.getPower(data.get("resource"));
-        if(power instanceof VariableIntPower variableIntPower) {
-            variableIntPower.setValue(variableIntPower.getValue() + add);
-        }
+        if(!(power instanceof VariableIntPower variableIntPower)) return;
+
+        variableIntPower.setValue(variableIntPower.getValue() + add);
         component.sync();
     }
 
-    private final Random generator = new Random();
+    private void copyEffect(LivingEntity livingEntity) {
+        Map<StatusEffect, StatusEffectInstance> effects = livingEntity.getActiveStatusEffects();
+        ArrayList<StatusEffectInstance> effectsList = new ArrayList<>(effects.values());
+
+        int i = generator.nextInt(effects.size());
+        StatusEffectInstance effect = effectsList.get(i);
+
+        entity.addStatusEffect(effect);
+        livingEntity.removeStatusEffect(effect.getEffectType());
+    }
+
+    private void addingResource(LivingEntity livingEntity) {
+        if(livingEntity instanceof AnimalEntity) {
+            addToResource(2);
+        } else if(livingEntity.isPlayer() || livingEntity instanceof VillagerEntity) {
+            addToResource(3);
+        } else {
+            if (livingEntity instanceof MobEntity mobEntity) {
+                mobEntity.setTarget(entity);
+            }
+            addToResource(1);
+        }
+    }
 
     public void tick() {
-        if(isActive()) {
-            if(entity.getVehicle()!=null&&entity.getVehicle() instanceof LivingEntity livingEntity) {
-                tick++;
-                if(tick >= 40) {
-                    livingEntity.damage(DamageSource.MAGIC, 3);
-                    if(!livingEntity.getActiveStatusEffects().isEmpty()) {
-                        Map<StatusEffect, StatusEffectInstance> effects = livingEntity.getActiveStatusEffects();
-                        ArrayList<StatusEffectInstance> effectsList = new ArrayList<>(effects.values());
+        if(!isActive()) return;
+        if(entity.getVehicle()==null) return;
+        if(!(entity.getVehicle() instanceof LivingEntity livingEntity)) return;
+        tick++;
+        if(tick >= 40) return;
 
-                        int i = generator.nextInt(effects.size());
-                        StatusEffectInstance effect = effectsList.get(i);
 
-                        entity.addStatusEffect(effect);
-                        livingEntity.removeStatusEffect(effect.getEffectType());
-                    }
+        livingEntity.damage(DamageSource.MAGIC, 3);
 
-                    if(livingEntity instanceof AnimalEntity) {
-                        modifyResource(2);
-                    } else if(livingEntity.isPlayer() || livingEntity instanceof VillagerEntity) {
-                        modifyResource(3);
-                    } else {
-                        if(livingEntity instanceof MobEntity mobEntity) {
-                            mobEntity.setTarget(entity);
-                        }
-                        modifyResource(1);
-                    }
-                    tick = 0;
-                }
-            }
-        }
+        if(!livingEntity.getActiveStatusEffects().isEmpty())
+            copyEffect(livingEntity);
+
+        addingResource(livingEntity);
+        tick = 0;
     }
 }

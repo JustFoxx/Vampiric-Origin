@@ -17,19 +17,22 @@ public class Size extends BasePower {
     public void tick() {
         final ScaleData baseData = ScaleTypes.BASE.getScaleData(entity);
         final ScaleData reachData = ScaleTypes.REACH.getScaleData(entity);
-        if(isActive()) {
-            if(baseData.getScale() != baseScale) {
-                baseData.setTargetScale(baseScale);
-            } else if(reachData.getScale() != reachScale) {
-                reachData.setTargetScale(reachScale);
-            }
-        } else if(!isActive()){
-            if(baseData.getScale() != 1) {
+
+        if(!isActive()) {
+            if(baseData.getScale() != 1)
                 baseData.setTargetScale(1);
-            } else if(reachData.getScale() != 1) {
+
+            if(reachData.getScale() != 1)
                 reachData.setTargetScale(1);
-            }
+
+            return;
         }
+
+        if(baseData.getScale() != baseScale)
+            baseData.setTargetScale(baseScale);
+
+        if(reachData.getScale() != reachScale)
+            reachData.setTargetScale(reachScale);
     }
 
     @Override
