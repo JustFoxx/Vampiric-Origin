@@ -38,5 +38,7 @@
   "hud_render": {
     "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_02.png",
     "bar_index": 14
-  }
+  },
+  "name": "Bloody veins",
+  "description": "You can teleport randomly around you, requires 15 blood source"
 }

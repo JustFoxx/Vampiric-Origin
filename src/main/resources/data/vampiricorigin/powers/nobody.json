@@ -11,5 +11,23 @@
     },
     "eating":{
         "type":"vampiricorigin:no_eat"
-    }
+    },
+    "hunger":{
+        "type": "origins:modify_exhaustion",
+        "modifier": {
+            "name": "Increased exhaustion",
+            "operation": "multiply_base",
+            "value": -1.0
+        }
+    },
+    "nosleep":{
+        "type":"origins:modify_sleep_timer",
+        "modifier":{
+            "name":"No sleep",
+            "operation":"add",
+            "value":0
+        }  
+    },
+    "name": "No body",
+    "description": "You have no body, you can't eat, you can't sleep, you are transparent and small."
 }

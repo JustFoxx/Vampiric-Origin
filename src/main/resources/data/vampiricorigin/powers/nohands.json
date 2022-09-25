@@ -20,5 +20,7 @@
         }
       ]
     }
-  }
+  },
+  "name": "No Hands",
+  "description": "You can't deal melee damage, and you can't use bows or shields."
 }

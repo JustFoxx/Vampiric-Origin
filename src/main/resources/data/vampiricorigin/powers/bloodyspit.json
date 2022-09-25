@@ -37,5 +37,7 @@
         "operation": "add",
         "resource": "vampiricorigin:bloodsource"
     }
-  }
+  },
+  "name": "Blood Spit",
+  "description": "Spit blood, dealing 5 damage, requires 10 blood source"
 }

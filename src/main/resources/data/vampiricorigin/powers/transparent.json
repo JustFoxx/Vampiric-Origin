@@ -23,5 +23,7 @@
     "compare_to": 0,
     "comparison": "==",
     "resource": "vampiricorigin:bloodsource"
-  }
+  },
+  "name": "Transparent",
+  "description": "You can phase through blocks if you don't have blood source"
 }

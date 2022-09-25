@@ -62,5 +62,7 @@
       }
     ]
   },
-  "cooldown": 400
+  "cooldown": 400,
+  "name": "Bloody Bomb",
+  "description": "By spiting with blood into poison potion, you can create bomb which when throwed creates cloud of poison, requires 15 blood source"
 }

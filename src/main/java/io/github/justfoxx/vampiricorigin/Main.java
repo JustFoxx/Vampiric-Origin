@@ -1,7 +1,6 @@
 package io.github.justfoxx.vampiricorigin;
 
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
-import io.github.apace100.apoli.power.Power;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;

@@ -15,5 +15,7 @@
   "sucking": {
     "type": "vampiricorigin:sucker",
     "resource": "vampiricorigin:bloodsource"
-  }
+  },
+  "name": "Sucker",
+  "description": "You can suck blood from other entities."
 }

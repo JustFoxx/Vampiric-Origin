@@ -1,12 +1,9 @@
 package io.github.justfoxx.vampiricorigin;
 
 import io.github.apace100.apoli.data.ApoliDataTypes;
-import io.github.apace100.apoli.power.Power;
-import io.github.apace100.apoli.power.PowerTypeReference;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.calio.data.SerializableData;
 import io.github.justfoxx.vampiricorigin.powers.*;
-import net.minecraft.util.Identifier;
 
 import static io.github.justfoxx.vampiricorigin.Main.ID;
 

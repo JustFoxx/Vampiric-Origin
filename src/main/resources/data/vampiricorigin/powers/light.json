@@ -11,5 +11,7 @@
     "type": "origins:modify_falling",
     "velocity": 0.01,
     "take_fall_damage": false
-  }
+  },
+  "name": "Light as air",
+  "description": "You can jump higher and fall slower"
 }

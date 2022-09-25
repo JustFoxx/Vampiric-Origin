@@ -38,5 +38,7 @@
         "value": 4
     },
     "update_health": true
-  }
+  },
+  "name": "Vampire",
+  "description": "Vampire inside you, you are faster at night (you need at least 20 blood) and have more health"
 }

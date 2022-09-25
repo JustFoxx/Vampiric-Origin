@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Shadow protected abstract void applyDamage(DamageSource source, float amount);
+
 
     @ModifyReturnValue(method = "getGroup", at = @At("RETURN"))
     private EntityGroup modifyGroup(EntityGroup group) {
