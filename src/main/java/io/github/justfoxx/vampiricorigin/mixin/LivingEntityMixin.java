@@ -26,6 +26,15 @@ public abstract class LivingEntityMixin {
         return group;
     }
 
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    private void onDeath(DamageSource source, CallbackInfo ci) {
+        if (PowerHolderComponent.hasPower((LivingEntity) (Object) this, Sucker.class)) {
+            for (Sucker power : PowerHolderComponent.getPowers((LivingEntity) (Object) this, Sucker.class)) {
+                power.onDeath();
+            }
+        }
+    }
+
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
         if (PowerHolderComponent.hasPower((LivingEntity) (Object) this, Sucker.class)) {

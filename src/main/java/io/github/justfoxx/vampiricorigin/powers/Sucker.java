@@ -22,6 +22,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class Sucker extends BasePower {
+    private enum MODIFIER {
+        ADD,
+        REMOVE,
+        SET
+    }
     private final SerializableData.Instance data;
     private final Random generator = new Random();
     private int tick = 30;
@@ -37,12 +42,16 @@ public class Sucker extends BasePower {
         entity.dismountVehicle();
     }
 
-    private void addToResource(int add) {
+    private void modifyResource(int value, MODIFIER modifier) {
         PowerHolderComponent component = PowerHolderComponent.KEY.get(entity);
         Power power = component.getPower(data.get("resource"));
         if(!(power instanceof VariableIntPower variableIntPower)) return;
+        switch (modifier) {
+            case ADD -> variableIntPower.setValue(variableIntPower.getValue() + value);
+            case REMOVE -> variableIntPower.setValue(variableIntPower.getValue() - value);
+            case SET -> variableIntPower.setValue(value);
+        }
 
-        variableIntPower.setValue(variableIntPower.getValue() + add);
         component.sync();
     }
 
@@ -59,14 +68,14 @@ public class Sucker extends BasePower {
 
     private void addingResource(LivingEntity livingEntity) {
         if(livingEntity instanceof AnimalEntity) {
-            addToResource(2);
+            modifyResource(2, MODIFIER.ADD);
         } else if(livingEntity.isPlayer() || livingEntity instanceof VillagerEntity) {
-            addToResource(3);
+            modifyResource(3, MODIFIER.ADD);
         } else {
             if (livingEntity instanceof MobEntity mobEntity) {
                 mobEntity.setTarget(entity);
             }
-            addToResource(1);
+            modifyResource(1, MODIFIER.ADD);
         }
     }
 
@@ -87,5 +96,9 @@ public class Sucker extends BasePower {
         addingResource(livingEntity);
         if(!(entity.getWorld() instanceof ServerWorld serverWorld)) return;
         serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.getDefaultState()), entity.getX(), entity.getY()+0.5, entity.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
+    }
+
+    public void onDeath() {
+        modifyResource(10, MODIFIER.SET);
     }
 }
