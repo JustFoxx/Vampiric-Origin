@@ -3,6 +3,9 @@ package io.github.justfoxx.vampiricorigin.powers;
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.*;
 import io.github.apace100.calio.data.SerializableData;
+import io.github.justfoxx.vampiricorigin.Main;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.RedstoneBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -10,6 +13,9 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -68,9 +74,10 @@ public class Sucker extends BasePower {
         if(!isActive()) return;
         if(entity.getVehicle()==null) return;
         if(!(entity.getVehicle() instanceof LivingEntity livingEntity)) return;
-        tick++;
-        if(tick >= 40) return;
 
+        tick++;
+        if(tick < 40) return;
+        tick = 0;
 
         livingEntity.damage(DamageSource.MAGIC, 3);
 
@@ -78,6 +85,7 @@ public class Sucker extends BasePower {
             copyEffect(livingEntity);
 
         addingResource(livingEntity);
-        tick = 0;
+        if(!(entity.getWorld() instanceof ServerWorld serverWorld)) return;
+        serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.getDefaultState()), entity.getX(), entity.getY()+0.5, entity.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
     }
 }

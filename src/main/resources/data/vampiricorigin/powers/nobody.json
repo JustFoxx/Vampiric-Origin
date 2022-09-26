@@ -1,33 +1,37 @@
 {
-    "type":"origins:multiple",
-    "transparent":{
-        "type":"origins:model_color",
-        "alpha": 0.5,
-        "blue": 0.5,
-        "green": 0.5
+  "type": "origins:multiple",
+  "transparent": {
+    "type": "origins:model_color",
+    "alpha": 0.5,
+    "blue": 0.5,
+    "green": 0.5
+  },
+  "size": {
+    "type": "vampiricorigin:size"
+  },
+  "eating": {
+    "type": "vampiricorigin:no_eat"
+  },
+  "hunger": {
+    "type": "origins:action_over_time",
+    "condition": {
+      "type": "origins:nbt",
+      "nbt": "{foodLevel:19}"
     },
-    "size":{
-        "type":"vampiricorigin:size"
-    },
-    "eating":{
-        "type":"vampiricorigin:no_eat"
-    },
-    "hunger":{
-        "type": "origins:modify_exhaustion",
-        "modifier": {
-            "name": "Increased exhaustion",
-            "operation": "multiply_base",
-            "value": -1.0
-        }
-    },
-    "nosleep":{
-        "type":"origins:modify_sleep_timer",
-        "modifier":{
-            "name":"No sleep",
-            "operation":"add",
-            "value":0
-        }  
-    },
-    "name": "No body",
-    "description": "You have no body, you can't eat, you can't sleep, you are transparent and small."
+    "interval": 1,
+    "entity_action": {
+      "type": "origins:execute_command",
+      "command": "execute as @p run function vampiricorigin:power/hunger"
+    }
+  },
+  "nosleep": {
+    "type": "origins:modify_sleep_timer",
+    "modifier": {
+      "name": "No sleep",
+      "operation": "add",
+      "value": 0
+    }
+  },
+  "name": "No body",
+  "description": "You have no body, you can't eat, you can't sleep, you are transparent and small."
 }
