@@ -12,7 +12,6 @@ public class Powers {
         Utils.register(Utils.createPower("size", data -> Size::new));
         Utils.register(Utils.createPower("no_eat", data -> NoEat::new));
         Utils.register(Utils.createPower("undead", data -> UndeadEffect::new));
-        Utils.register(Utils.createPower("no_mob_attack", data -> NoMobAttack::new));
         Utils.register(new PowerFactory<>(ID("sucker"),
                 new SerializableData().add("resource", ApoliDataTypes.POWER_TYPE),
                 data -> (type, player) -> new Sucker(type, player, data)

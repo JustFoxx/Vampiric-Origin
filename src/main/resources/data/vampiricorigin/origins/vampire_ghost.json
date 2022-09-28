@@ -11,7 +11,8 @@
         "vampiricorigin:sun",
         "vampiricorigin:transparent",
         "vampiricorigin:undead",
-        "vampiricorigin:vampire"
+        "vampiricorigin:vampire",
+        "vampiricorigin:undeadleech"
     ],
     "icon":"minecraft:fermented_spider_eye",
     "order":100,

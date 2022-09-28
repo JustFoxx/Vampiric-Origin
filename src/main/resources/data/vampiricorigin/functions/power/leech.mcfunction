@@ -1,0 +1,1 @@
+summon minecraft:endermite ~ ~ ~ {CustomName:'[{"text":"Undead Leech","color":"dark_red","bold":true}]',CustomNameVisible:1b,Health:2,Attributes:[{Name:"generic.max_health",Base:4f}]}

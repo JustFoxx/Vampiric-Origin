@@ -3,9 +3,6 @@
     "effects":{
         "type":"vampiricorigin:undead"
     },
-    "nomobattack":{
-        "type":"vampiricorigin:no_mob_attack"
-    },
     "name" : "Undead",
-    "description": "You are undead, you can't be attacked by mobs and you are undead"
+    "description": "You are simply undead"
 }
