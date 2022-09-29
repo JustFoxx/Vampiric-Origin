@@ -3,7 +3,7 @@
   "speed": {
     "type": "origins:stacking_status_effect",
     "effect": {
-      "amplifier": 2,
+      "amplifier": 1,
       "effect": "speed",
       "is_ambient": true,
       "duration": 10,
