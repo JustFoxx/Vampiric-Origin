@@ -39,6 +39,11 @@
     },
     "update_health": true
   },
+  "sleep": {
+    "type": "origins:prevent_sleep",
+    "message": "You can't sleep while you're a vampire!",
+    "set_spawn_point": true
+  },
   "name": "Vampire",
   "description": "Vampire inside you, you are faster at night (you need at least 15 blood) and have more health"
 }
