@@ -88,7 +88,7 @@ public class Sucker extends BasePower {
         if(tick < 40) return;
         tick = 0;
 
-        livingEntity.damage(DamageSource.MAGIC, 3);
+        livingEntity.damage(DamageSource.OUT_OF_WORLD, 3);
 
         if(!livingEntity.getActiveStatusEffects().isEmpty())
             copyEffect(livingEntity);

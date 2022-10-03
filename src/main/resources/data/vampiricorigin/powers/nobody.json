@@ -24,14 +24,6 @@
       "command": "execute as @p run function vampiricorigin:power/hunger"
     }
   },
-  "nosleep": {
-    "type": "origins:modify_sleep_timer",
-    "modifier": {
-      "name": "No sleep",
-      "operation": "add",
-      "value": 0
-    }
-  },
   "name": "No body",
   "description": "You have no body, you can't eat, you can't sleep, you are transparent and small."
 }
