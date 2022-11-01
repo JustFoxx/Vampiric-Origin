@@ -10,7 +10,17 @@
       "condition": {
         "type": "origins:living"
       }
-    }
+    },
+    "entity_action": {
+    "type": "origins:riding_action",
+    "action": {
+        "type": "origins:apply_effect",
+        "effect": {
+            "effect": "minecraft:speed",
+            "duration": 100,
+            "amplifier": 1
+        }
+     }
   },
   "sucking": {
     "type": "vampiricorigin:sucker",
