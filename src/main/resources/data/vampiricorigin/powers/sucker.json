@@ -16,7 +16,7 @@
     "action": {
         "type": "origins:apply_effect",
         "effect": {
-            "effect": "minecraft:speed",
+            "effect": "minecraft:weakness",
             "duration": 100,
             "amplifier": 1
         }
