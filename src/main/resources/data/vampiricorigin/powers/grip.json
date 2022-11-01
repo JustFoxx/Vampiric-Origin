@@ -4,8 +4,10 @@
     "action": {
         "type": "origins:apply_effect",
         "effect": {
-            "effect": "minecraft:weakness",
+            "effect": "minecraft:invisibility",
             "duration": 100,
+            "is_ambient": true,
+            "show_icon": false,
             "show_particles": true
         }
     }
