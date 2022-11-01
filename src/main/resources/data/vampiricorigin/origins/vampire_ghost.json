@@ -12,7 +12,8 @@
         "vampiricorigin:transparent",
         "vampiricorigin:undead",
         "vampiricorigin:vampire",
-        "vampiricorigin:undeadleech"
+        "vampiricorigin:undeadleech",
+        "vampiricorigin:grip"
     ],
     "icon":"minecraft:fermented_spider_eye",
     "order":100,
