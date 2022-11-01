@@ -10,9 +10,6 @@
                     "type":"origins:exposed_to_sun"
                 },
                 {
-                    "type": "origins:on_fire"
-                },
-                {
                     "type":"origins:daytime"
                 }
             ]
