@@ -17,7 +17,6 @@
     "resource": "vampiricorigin:bloodsource"
   },
   "grip_power":{
-    "entity_action": {
     "type": "origins:riding_action",
     "action": {
         "type": "origins:apply_effect",
