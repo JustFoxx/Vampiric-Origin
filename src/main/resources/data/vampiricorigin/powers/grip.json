@@ -1,15 +1,15 @@
 {
-"entity_action": {
+ "entity_action": {
     "type": "origins:riding_action",
     "action": {
         "type": "origins:apply_effect",
         "effect": {
-            "effect": "minecraft:speed",
+            "effect": "minecraft:weakness",
             "duration": 100,
-            "amplifier": 1
+            "show_particles": true
         }
     }
-},
-"name": "Predator grip",
-"description": "When u have hold of prey, the prey gets weakness and is to weak to fight back"
+ },
+ "name": "Predator grip",
+ "description": "When u have hold of ur prey, the prey gets weakness and is to weak to fight back"
 }
