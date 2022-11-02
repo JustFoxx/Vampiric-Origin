@@ -9,13 +9,30 @@
       "type": "origins:target_condition",
       "condition": {
         "type": "origins:living"
-      }
-    }
+        }
+     }
   },
   "sucking": {
     "type": "vampiricorigin:sucker",
     "resource": "vampiricorigin:bloodsource"
   },
+  "grip_power":{
+    "type": "origins:action_over_time",
+    "interval": 20,
+    "entity_action": {
+    "type": "origins:riding_action",
+    "action": {
+        "type": "origins:apply_effect",
+        "effect": {
+            "effect": "minecraft:weakness",
+            "duration": 100,
+            "is_ambient": true,
+            "show_icon": false,
+            "show_particles": true
+        }
+      }
+    }
+},
   "name": "Sucker",
   "description": "You can suck blood from other entities."
 }
