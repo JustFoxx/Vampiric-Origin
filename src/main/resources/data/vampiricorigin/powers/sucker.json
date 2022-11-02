@@ -17,6 +17,9 @@
     "resource": "vampiricorigin:bloodsource"
   },
   "grip_power":{
+    "type": "origins:action_over_time",
+    "interval": 20,
+    "entity_action": {
     "type": "origins:riding_action",
     "action": {
         "type": "origins:apply_effect",
@@ -27,6 +30,7 @@
             "show_icon": false,
             "show_particles": true
         }
+      }
     }
 },
   "name": "Sucker",
