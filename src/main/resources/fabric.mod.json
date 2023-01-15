@@ -32,7 +32,8 @@
     "minecraft": ">=1.19",
     "java": ">=17",
     "pehkui": ">=3.4.2",
-    "origins": "*"
+    "origins": "*",
+    "ivycore":  "*"
   },
   "suggests": {
     "nochatreporting": "*"
