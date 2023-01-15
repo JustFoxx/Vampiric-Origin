@@ -26,6 +26,12 @@
             }
         ]
     },
+    "condition": {
+        "type": "origins:resource",
+        "compare_to": 0,
+        "comparison": "!=",
+        "resource": "vampiricorigin:bloodsource"
+    },
     "cooldown": 800,
     "hud_render": {
         "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
