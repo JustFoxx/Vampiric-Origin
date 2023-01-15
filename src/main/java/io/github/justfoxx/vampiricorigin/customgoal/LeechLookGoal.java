@@ -1,6 +1,9 @@
 package io.github.justfoxx.vampiricorigin.customgoal;
 
 import io.github.apace100.apoli.component.PowerHolderComponent;
+import io.github.justfoxx.vampiricorigin.Main;
+import io.github.justfoxx.vampiricorigin.RegistryTypes;
+import io.github.justfoxx.vampiricorigin.powers.PowerWrapper;
 import io.github.justfoxx.vampiricorigin.powers.Sucker;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
@@ -18,12 +21,14 @@ public class LeechLookGoal extends LookAtEntityGoal {
     @Override
     public boolean canStart() {
         boolean bl = super.canStart();
+
         if(this.target == null) return false;
-        if(PowerHolderComponent.hasPower(this.target, Sucker.class)) bl = false;
+        if(!(this.target instanceof LivingEntity livingEntity)) return false;
 
-        //if(this.target.getCustomName() == null) return false;
+        PowerWrapper power = Main.registry.get(RegistryTypes.POWERS,Main.g.id("sucker"));
+
+        if(power.isActive(livingEntity)) bl = false;
         if(Objects.equals(this.target.getCustomName(), Text.literal("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
-
         if(this.mob.getCustomName() == null) return false;
         if(!this.mob.getCustomName().equals(Text.literal("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
         return bl;

@@ -24,5 +24,4 @@ public abstract class EndermiteMixin extends HostileEntity {
         this.goalSelector.add(7, new LeechLookGoal(this, 8.0F));
         this.targetSelector.add(3, new LeechGoal(this));
     }
-
 }

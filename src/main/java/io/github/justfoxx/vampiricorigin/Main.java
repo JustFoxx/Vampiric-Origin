@@ -1,24 +1,20 @@
 package io.github.justfoxx.vampiricorigin;
 
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
+import io.github.ivymc.ivycore.Global;
+import io.github.ivymc.ivycore.registry.RegistryBuilder;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Main implements ModInitializer {
-    public static final String MOD_ID = "vampiricorigin";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static Identifier ID(String name) {
-        return new Identifier(MOD_ID, name);
-    }
-
+    public static final Global g = new Global("vampiricorigin");
+    public static RegistryBuilder registry = new RegistryBuilder();
+    public static Powers powers = new Powers();
 
     @Override
     public void onInitialize() {
         MixinExtrasBootstrap.init();
-        Powers.register();
-        LOGGER.info("Vampires have been loaded");
+        powers.init();
+        g.LOGGER.info("Vampires have been loaded");
     }
 }

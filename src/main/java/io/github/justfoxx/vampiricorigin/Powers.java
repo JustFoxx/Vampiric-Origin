@@ -1,20 +1,16 @@
 package io.github.justfoxx.vampiricorigin;
 
-import io.github.apace100.apoli.data.ApoliDataTypes;
-import io.github.apace100.apoli.power.factory.PowerFactory;
-import io.github.apace100.calio.data.SerializableData;
+import io.github.ivymc.ivycore.registry.RegistryBuilder;
 import io.github.justfoxx.vampiricorigin.powers.*;
 
-import static io.github.justfoxx.vampiricorigin.Main.ID;
-
 public class Powers {
-    public static void register() {
-        Utils.register(Utils.createPower("size", data -> Size::new));
-        Utils.register(Utils.createPower("no_eat", data -> NoEat::new));
-        Utils.register(Utils.createPower("undead", data -> UndeadEffect::new));
-        Utils.register(new PowerFactory<>(ID("sucker"),
-                new SerializableData().add("resource", ApoliDataTypes.POWER_TYPE),
-                data -> (type, player) -> new Sucker(type, player, data)
-        ));
+    public Powers() {
+    }
+
+    public void init() {
+        Main.registry.add(RegistryTypes.POWERS, Main.g.id("size"),new Size(Main.g.id("nobody_size")));
+        Main.registry.add(RegistryTypes.POWERS, Main.g.id("no_eat"),new NoEat(Main.g.id("nobody_eating")));
+        Main.registry.add(RegistryTypes.POWERS, Main.g.id("undead"),new UndeadEffect(Main.g.id("undead")));
+        Main.registry.add(RegistryTypes.POWERS, Main.g.id("sucker"),new Sucker(Main.g.id("bloodsource")));
     }
 }

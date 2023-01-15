@@ -1,104 +1,75 @@
 package io.github.justfoxx.vampiricorigin.powers;
 
-import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.*;
-import io.github.apace100.calio.data.SerializableData;
-import io.github.justfoxx.vampiricorigin.Main;
+import io.github.justfoxx.vampiricorigin.helpers.MathEnum;
+import io.github.justfoxx.vampiricorigin.helpers.PowerHelper;
+import io.github.justfoxx.vampiricorigin.interfaces.IEDamaging;
+import io.github.justfoxx.vampiricorigin.interfaces.IEDying;
+import io.github.justfoxx.vampiricorigin.interfaces.IETicking;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.RedstoneBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
-public class Sucker extends BasePower {
-    private enum MODIFIER {
-        ADD,
-        REMOVE,
-        SET
-    }
-    private final SerializableData.Instance data;
+public class Sucker extends PowerWrapper implements IEDying, IETicking, IEDamaging {
     private final Random generator = new Random();
     private int tick = 30;
 
-    public Sucker(PowerType<?> type, LivingEntity entity, SerializableData.Instance data) {
-        super(type, entity);
-        this.data = data;
+    public Sucker(Identifier identifier) {
+        super(identifier);
     }
 
-    public void onDamage() {
-        if(!(entity.getVehicle() instanceof LivingEntity))return;
 
-        entity.dismountVehicle();
+    @Override
+    public void onDamage(LivingEntity livingEntity, DamageSource source, float amount) {
+        if(!(livingEntity.getVehicle() instanceof LivingEntity))return;
+
+        livingEntity.dismountVehicle();
     }
 
-    private void modifyResource(int value, MODIFIER modifier) {
-        PowerHolderComponent component = PowerHolderComponent.KEY.get(entity);
-        Power power = component.getPower(data.get("resource"));
-        if(!(power instanceof VariableIntPower variableIntPower)) return;
-        switch (modifier) {
-            case ADD -> variableIntPower.setValue(variableIntPower.getValue() + value);
-            case REMOVE -> variableIntPower.setValue(variableIntPower.getValue() - value);
-            case SET -> variableIntPower.setValue(value);
-        }
-
-        component.sync();
+    @Override
+    public void onDeath(LivingEntity livingEntity, DamageSource source) {
+        PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
     }
 
-    private void copyEffect(LivingEntity livingEntity) {
-        Map<StatusEffect, StatusEffectInstance> effects = livingEntity.getActiveStatusEffects();
-        ArrayList<StatusEffectInstance> effectsList = new ArrayList<>(effects.values());
-
-        int i = generator.nextInt(effects.size());
-        StatusEffectInstance effect = effectsList.get(i);
-
-        entity.addStatusEffect(effect);
-        livingEntity.removeStatusEffect(effect.getEffectType());
-    }
-
-    private void addingResource(LivingEntity livingEntity) {
-        if(livingEntity instanceof AnimalEntity) {
-            modifyResource(2, MODIFIER.ADD);
-        } else if(livingEntity.isPlayer() || livingEntity instanceof VillagerEntity) {
-            modifyResource(3, MODIFIER.ADD);
-        } else {
-            if (livingEntity instanceof MobEntity mobEntity) {
-                mobEntity.setTarget(entity);
-            }
-            modifyResource(1, MODIFIER.ADD);
-        }
-    }
-
-    public void tick() {
-        if(!isActive()) return;
-        if(entity.getVehicle()==null) return;
-        if(!(entity.getVehicle() instanceof LivingEntity livingEntity)) return;
+    @Override
+    public void tick(LivingEntity livingEntity) {
+        if(!isActive(livingEntity)) return;
+        if(!(livingEntity.getVehicle() instanceof LivingEntity entity)) return;
 
         tick++;
         if(tick < 40) return;
         tick = 0;
 
-        livingEntity.damage(DamageSource.OUT_OF_WORLD, 3);
+        entity.damage(DamageSource.OUT_OF_WORLD, 3);
 
-        if(!livingEntity.getActiveStatusEffects().isEmpty())
-            copyEffect(livingEntity);
+        if(!entity.getActiveStatusEffects().isEmpty())
+            PowerHelper.copyEffect(generator, livingEntity, entity);
 
-        addingResource(livingEntity);
-        if(!(entity.getWorld() instanceof ServerWorld serverWorld)) return;
-        serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.getDefaultState()), entity.getX(), entity.getY()+0.5, entity.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
+        addingResource(livingEntity, entity);
+        if(!(livingEntity.getWorld() instanceof ServerWorld serverWorld)) return;
+        serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.getDefaultState()), livingEntity.getX(), livingEntity.getY()+0.5, livingEntity.getZ(), 3, 0.2, 0.2, 0.2, 0.1);
     }
 
-    public void onDeath() {
-        modifyResource(10, MODIFIER.SET);
+
+    private void addingResource(LivingEntity livingEntity, LivingEntity entity) {
+        if(livingEntity instanceof AnimalEntity) {
+            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 2, MathEnum.ADD, livingEntity);
+        } else if(livingEntity.isPlayer() || entity instanceof VillagerEntity) {
+            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 3, MathEnum.ADD, livingEntity);
+        } else {
+            if (livingEntity instanceof MobEntity mobEntity) {
+                mobEntity.setTarget(livingEntity);
+            }
+            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
+        }
     }
 }

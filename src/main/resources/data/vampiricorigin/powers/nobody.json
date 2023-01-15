@@ -7,10 +7,10 @@
     "green": 0.5
   },
   "size": {
-    "type": "vampiricorigin:size"
+    "type": "origins:simple"
   },
   "eating": {
-    "type": "vampiricorigin:no_eat"
+    "type": "origins:simple"
   },
   "hunger": {
     "type": "origins:action_over_time",

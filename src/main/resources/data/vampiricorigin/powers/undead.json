@@ -1,8 +1,5 @@
 {
-    "type":"origins:multiple",
-    "effects":{
-        "type":"vampiricorigin:undead"
-    },
+    "type":"origins:simple",
     "name" : "Undead",
     "description": "You are simply undead"
 }

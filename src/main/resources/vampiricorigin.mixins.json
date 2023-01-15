@@ -6,7 +6,6 @@
   "mixins": [
     "ActiveTargetGoalMixin",
     "EndermiteMixin",
-    "GolemMixin",
     "ItemMixin",
     "LivingEntityMixin"
   ],

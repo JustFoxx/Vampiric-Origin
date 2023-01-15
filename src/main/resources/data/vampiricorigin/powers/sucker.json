@@ -12,10 +12,6 @@
         }
      }
   },
-  "sucking": {
-    "type": "vampiricorigin:sucker",
-    "resource": "vampiricorigin:bloodsource"
-  },
   "grip_power":{
     "type": "origins:action_over_time",
     "interval": 20,
