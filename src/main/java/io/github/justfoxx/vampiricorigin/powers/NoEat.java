@@ -1,6 +1,5 @@
 package io.github.justfoxx.vampiricorigin.powers;
 
-import io.github.apace100.apoli.power.PowerType;
 import io.github.justfoxx.vampiricorigin.interfaces.IEItemUsing;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;

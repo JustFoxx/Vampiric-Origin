@@ -1,6 +1,7 @@
 {
     "powers": [
         "vampiricorigin:bloodsource",
+        "vampiricorigin:drain",
         "vampiricorigin:bloodyspit",
         "vampiricorigin:bloodyveins",
         "vampiricorigin:bloodybomb",
@@ -14,9 +15,9 @@
         "vampiricorigin:vampire",
         "vampiricorigin:undeadleech"
     ],
-    "icon":"minecraft:fermented_spider_eye",
-    "order":100,
+    "icon": "minecraft:fermented_spider_eye",
+    "order": 100,
     "impact": 2,
-    "name":"Vampire Ghost",
+    "name": "Vampire Ghost",
     "description": "Demonic creature, created from blood and soul of vampire, seeking for revenge"
 }

@@ -2,7 +2,6 @@ package io.github.justfoxx.vampiricorigin.mixin;
 
 import io.github.justfoxx.vampiricorigin.customgoal.LeechGoal;
 import io.github.justfoxx.vampiricorigin.customgoal.LeechLookGoal;
-import io.netty.channel.unix.IovArray;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.entity.mob.HostileEntity;

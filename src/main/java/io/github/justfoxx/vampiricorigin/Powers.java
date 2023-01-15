@@ -1,6 +1,5 @@
 package io.github.justfoxx.vampiricorigin;
 
-import io.github.ivymc.ivycore.registry.RegistryBuilder;
 import io.github.justfoxx.vampiricorigin.powers.*;
 
 public class Powers {

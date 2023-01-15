@@ -2,12 +2,13 @@ package io.github.justfoxx.vampiricorigin.powers;
 
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.*;
+import io.github.justfoxx.vampiricorigin.helpers.MathEnum;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
 public class PowerWrapper {
     private final Identifier id;
-    protected PowerTypeReference<Power> powerTypeReference;
+    protected final PowerTypeReference<Power> powerTypeReference;
     protected PowerType<?> powerType;
     protected PowerHolderComponent powerHolderComponent;
 
@@ -32,6 +33,15 @@ public class PowerWrapper {
             this.powerType = PowerTypeRegistry.get(id);
         }
         return getPowerHolder(entity).getPower(this.powerType);
+    }
+
+    public void modifyResource(VariableIntPower power, int value, MathEnum mathEnum, LivingEntity livingEntity) {
+        switch (mathEnum) {
+            case ADD ->power.setValue(power.getValue() + value);
+            case REMOVE ->power.setValue(power.getValue() - value);
+            case SET ->power.setValue(value);
+        }
+        getPowerHolder(livingEntity).sync();
     }
 }
 

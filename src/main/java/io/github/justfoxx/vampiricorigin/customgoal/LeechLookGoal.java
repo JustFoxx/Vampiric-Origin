@@ -1,10 +1,8 @@
 package io.github.justfoxx.vampiricorigin.customgoal;
 
-import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.justfoxx.vampiricorigin.Main;
 import io.github.justfoxx.vampiricorigin.RegistryTypes;
 import io.github.justfoxx.vampiricorigin.powers.PowerWrapper;
-import io.github.justfoxx.vampiricorigin.powers.Sucker;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.mob.MobEntity;

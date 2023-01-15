@@ -13,18 +13,12 @@ public class PowerHelper {
     public static void copyEffect(Random generator, LivingEntity livingEntity, LivingEntity entity) {
         Map<StatusEffect, StatusEffectInstance> effects = livingEntity.getActiveStatusEffects();
         ArrayList<StatusEffectInstance> effectsList = new ArrayList<>(effects.values());
-        if (effects.size() <= 0) return;
+        if (effects.size() == 0) return;
         int i = generator.nextInt(effects.size());
         StatusEffectInstance effect = effectsList.get(i);
 
         entity.addStatusEffect(effect);
         livingEntity.removeStatusEffect(effect.getEffectType());
     }
-    public static void modifyResource(VariableIntPower power, int value, MathEnum mathEnum, LivingEntity livingEntity) {
-        switch (mathEnum) {
-            case ADD ->power.setValue(power.getValue() + value);
-            case REMOVE ->power.setValue(power.getValue() - value);
-            case SET ->power.setValue(value);
-        }
-    }
+
 }

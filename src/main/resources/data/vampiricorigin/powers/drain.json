@@ -1,0 +1,40 @@
+{
+    "type": "origins:active_self",
+    "entity_action": {
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:spawn_particles",
+                "particle": {
+                    "type": "minecraft:block",
+                    "params": "minecraft:redstone_block"
+                },
+                "count": 16,
+                "speed": 0.1,
+                "force": true,
+                "spread": {
+                    "x": 0.2,
+                    "y": 0.3,
+                    "z": 0.2
+                }
+            },
+            {
+                "type": "origins:change_resource",
+                "change": 0,
+                "operation": "set",
+                "resource": "vampiricorigin:bloodsource"
+            }
+        ]
+    },
+    "cooldown": 400,
+    "hud_render": {
+        "sprite_location": "origins:textures/gui/community/huang/resource_bar_01.png",
+        "bar_index": 18
+    },
+    "key": {
+        "key": "key.spectatorOutlines",
+        "continuous": false
+    },
+    "name": "Drain",
+    "description": "Gives ability to completely drain your blood"
+}

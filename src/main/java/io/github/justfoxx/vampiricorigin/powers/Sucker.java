@@ -37,7 +37,7 @@ public class Sucker extends PowerWrapper implements IEDying, IETicking, IEDamagi
 
     @Override
     public void onDeath(LivingEntity livingEntity, DamageSource source) {
-        PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
+        modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
     }
 
     @Override
@@ -62,14 +62,14 @@ public class Sucker extends PowerWrapper implements IEDying, IETicking, IEDamagi
 
     private void addingResource(LivingEntity livingEntity, LivingEntity entity) {
         if(livingEntity instanceof AnimalEntity) {
-            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 2, MathEnum.ADD, livingEntity);
+            modifyResource((VariableIntPower) this.getPower(livingEntity), 2, MathEnum.ADD, livingEntity);
         } else if(livingEntity.isPlayer() || entity instanceof VillagerEntity) {
-            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 3, MathEnum.ADD, livingEntity);
+            modifyResource((VariableIntPower) this.getPower(livingEntity), 3, MathEnum.ADD, livingEntity);
         } else {
             if (livingEntity instanceof MobEntity mobEntity) {
                 mobEntity.setTarget(livingEntity);
             }
-            PowerHelper.modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
+            modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
         }
     }
 }
