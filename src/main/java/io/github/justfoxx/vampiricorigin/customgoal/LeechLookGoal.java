@@ -6,6 +6,7 @@ import io.github.justfoxx.vampiricorigin.powers.PowerWrapper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -26,9 +27,9 @@ public class LeechLookGoal extends LookAtEntityGoal {
         PowerWrapper power = Main.registry.get(RegistryTypes.POWERS,Main.g.id("sucker"));
 
         if(power.isActive(livingEntity)) bl = false;
-        if(Objects.equals(this.target.getCustomName(), Text.literal("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
+        if(Objects.equals(this.target.getCustomName(), new LiteralText("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
         if(this.mob.getCustomName() == null) return false;
-        if(!this.mob.getCustomName().equals(Text.literal("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
+        if(!this.mob.getCustomName().equals(new LiteralText("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))) bl = false;
         return bl;
     }
 }

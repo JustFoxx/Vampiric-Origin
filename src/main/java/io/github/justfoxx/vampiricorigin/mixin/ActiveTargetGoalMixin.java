@@ -7,7 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.TrackTargetGoal;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,7 +28,7 @@ public abstract class ActiveTargetGoalMixin<T extends LivingEntity> extends Trac
         if(
                 power.isActive(target)
                 && this.mob.getCustomName() != null
-                && this.mob.getCustomName().equals(Text.literal("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))
+                && this.mob.getCustomName().equals(new LiteralText("Undead Leech").formatted(Formatting.BOLD, Formatting.DARK_RED))
         ) return null;
         return target;
     }
