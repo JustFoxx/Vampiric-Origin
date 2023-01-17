@@ -38,8 +38,18 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
-    private void tick(CallbackInfo ci) {
+    private void tickSucker(CallbackInfo ci) {
         PowerWrapper power = Main.registry.get(RegistryTypes.POWERS, Main.g.id("sucker"));
+
+        if (!power.isActive((LivingEntity) (Object) this)) return;
+        if (!(power instanceof IETicking tickingPower)) return;
+
+        tickingPower.tick((LivingEntity) (Object) this);
+    }
+
+    @Inject(method = "tick", at = @At("HEAD"))
+    private void tickSizeChange(CallbackInfo ci) {
+        PowerWrapper power = Main.registry.get(RegistryTypes.POWERS, Main.g.id("size"));
 
         if (!power.isActive((LivingEntity) (Object) this)) return;
         if (!(power instanceof IETicking tickingPower)) return;
