@@ -1,8 +1,8 @@
 package io.github.justfoxx.vampiricorigin;
 
 import io.github.ivymc.ivycore.registry.RegistryType;
-import io.github.justfoxx.vampiricorigin.powers.PowerWrapper;
+import io.github.justfoxx.vampiricorigin.interfaces.IEPowerWrapper;
 
 public class RegistryTypes {
-    public static final RegistryType<PowerWrapper> POWERS = new RegistryType<>(PowerWrapper.class);
+    public static final RegistryType<IEPowerWrapper> POWERS = new RegistryType<>(IEPowerWrapper.class);
 }

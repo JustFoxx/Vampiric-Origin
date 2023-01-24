@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
 
-public class NoEat extends PowerWrapper implements IEItemUsing {
+public class NoEat extends PowerWrapperImpl implements IEItemUsing {
 
     public NoEat(Identifier identifier) {
         super(identifier);

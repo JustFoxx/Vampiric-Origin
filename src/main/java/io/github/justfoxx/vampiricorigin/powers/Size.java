@@ -1,12 +1,15 @@
 package io.github.justfoxx.vampiricorigin.powers;
 
+import io.github.apace100.apoli.power.Power;
+import io.github.justfoxx.vampiricorigin.interfaces.IEGetEntity;
+import io.github.justfoxx.vampiricorigin.interfaces.IERemoved;
 import io.github.justfoxx.vampiricorigin.interfaces.IETicking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleTypes;
 
-public class Size extends PowerWrapper implements IETicking {
+public class Size extends PowerWrapperImpl implements IETicking, IERemoved {
     private final float baseScale = 0.8F;
     private final float reachScale = 1.3F;
 
@@ -34,5 +37,16 @@ public class Size extends PowerWrapper implements IETicking {
         if(baseData.getScale() != baseScale) baseData.setTargetScale(baseScale);
         if(reachData.getScale() != reachScale) reachData.setTargetScale(reachScale);
         //if(speedData.getScale() != speedScale) speedData.setTargetScale(speedScale);
+    }
+
+    @Override
+    public void onRemoved(Power powerInstance) {
+        LivingEntity livingEntity = ((IEGetEntity) powerInstance).getEntity();
+
+        final ScaleData baseData = ScaleTypes.BASE.getScaleData(livingEntity);
+        final ScaleData reachData = ScaleTypes.REACH.getScaleData(livingEntity);
+
+        if(baseData.getScale() != 1) baseData.setTargetScale(1);
+        if(reachData.getScale() != 1) reachData.setTargetScale(1);
     }
 }

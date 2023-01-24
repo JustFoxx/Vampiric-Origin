@@ -5,6 +5,7 @@ import io.github.justfoxx.vampiricorigin.helpers.MathEnum;
 import io.github.justfoxx.vampiricorigin.helpers.PowerHelper;
 import io.github.justfoxx.vampiricorigin.interfaces.IEDamaging;
 import io.github.justfoxx.vampiricorigin.interfaces.IEDying;
+import io.github.justfoxx.vampiricorigin.interfaces.IEResource;
 import io.github.justfoxx.vampiricorigin.interfaces.IETicking;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +20,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.Random;
 
-public class Sucker extends PowerWrapper implements IEDying, IETicking, IEDamaging {
+public class Sucker extends PowerWrapperImpl implements IEDying, IETicking, IEDamaging, IEResource {
     private final Random generator = new Random();
     private int tick = 30;
 
@@ -71,5 +72,16 @@ public class Sucker extends PowerWrapper implements IEDying, IETicking, IEDamagi
             }
             modifyResource((VariableIntPower) this.getPower(livingEntity), 1, MathEnum.ADD, livingEntity);
         }
+    }
+
+
+    @Override
+    public void modifyResource(VariableIntPower power, int value, MathEnum mathEnum, LivingEntity livingEntity) {
+        switch (mathEnum) {
+            case ADD ->power.setValue(power.getValue() + value);
+            case REMOVE ->power.setValue(power.getValue() - value);
+            case SET ->power.setValue(value);
+        }
+        getPowerHolder(livingEntity).sync();
     }
 }

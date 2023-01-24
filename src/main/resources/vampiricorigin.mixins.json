@@ -7,7 +7,9 @@
     "ActiveTargetGoalMixin",
     "EndermiteMixin",
     "ItemMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "PowerHolderComponentImplMixin",
+    "PowerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

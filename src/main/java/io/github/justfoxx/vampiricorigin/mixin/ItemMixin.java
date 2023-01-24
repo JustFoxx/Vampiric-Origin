@@ -3,7 +3,7 @@ package io.github.justfoxx.vampiricorigin.mixin;
 import io.github.justfoxx.vampiricorigin.Main;
 import io.github.justfoxx.vampiricorigin.RegistryTypes;
 import io.github.justfoxx.vampiricorigin.interfaces.IEItemUsing;
-import io.github.justfoxx.vampiricorigin.powers.PowerWrapper;
+import io.github.justfoxx.vampiricorigin.interfaces.IEPowerWrapper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemMixin {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     public void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        PowerWrapper power = Main.registry.get(RegistryTypes.POWERS, Main.g.id("sucker"));
+        IEPowerWrapper power = Main.registry.get(RegistryTypes.POWERS, Main.g.id("sucker"));
 
         if (!power.isActive(user)) return;
         if (!(power instanceof IEItemUsing itemUsePower)) return;
